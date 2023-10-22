@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "+ejM2mZRDF/7zCYM/Qn49lZo+QzL3AYyKS3IDNJLfj2ovKnYT9eI7EIteNL+pM9GfFEUA5WZOFSL0+CogyDlOw==",
+  "success": true,
+  "projectFilePath": "D:\\Web Dev. Road\\.Net Core\\CaseWork\\ApplicationUI\\ApplicationUI.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\EMRE YILMAZ\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

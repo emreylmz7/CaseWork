@@ -1,0 +1,102 @@
+@* <nav class="navbar navbar-expand-lg bg-white shadow-sm">
+    <div class="container">
+        
+        <a href="/" class="navbar-brand">
+            <i class="bi bi-code-slash"></i> KariyerPlus
+        </a>
+        <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+                <a href="/jobs/index" class="nav-link text-dark">İlanlar</a>
+            </li>
+        </ul>
+
+            @if(User.Identity!.IsAuthenticated)
+            {
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a href="/posts/index" class="nav-link text-dark">Başvurularım</a>
+                    </li>
+                </ul>
+
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a href="/application/create" class="nav-link text-dark">Başvuru Yap</a>
+                    </li>
+                </ul>
+            
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a href="/profile/@User.Identity.Name" class="nav-link text-primary"><i class="bi bi-person-fill"></i> @User.Identity.Name</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/user/logout" class="nav-link text-danger"><i class="bi bi-box-arrow-in-right"></i> Logout</a>
+                    </li>
+                </ul>
+            }
+            else
+            {
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a href="/user/register" class="nav-link text-info"><i class="bi bi-person-add"></i> Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/user/login" class="nav-link text-success"><i class="bi bi-box-arrow-in-left"></i> Login</a>
+                    </li>
+                </ul>
+            }
+            
+        </ul>
+    </div>
+</nav> *@
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+    <div class="container">
+        <a href="/" class="navbar-brand">
+            <i class="bi bi-code-slash"></i> KariyerPlus
+        </a>
+
+        <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+                <a href="/jobs/index" class="nav-link text-dark">İlanlar</a>
+            </li>
+        </ul>
+
+        <ul class="navbar-nav ms-auto">
+            @if(User.Identity!.IsAuthenticated)
+            {
+                @if(User.FindFirstValue(ClaimTypes.Role) == "admin")
+                {
+                    <li class="nav-item">
+                        <a href="/application/list" class="nav-link text-dark">Alınan Başvurular</a>
+                    </li>
+                }
+                else
+                {
+                    <li class="nav-item">
+                        <a href="/application/list" class="nav-link text-dark">Başvurularım</a>
+                    </li>
+                }
+                
+                <li class="nav-item">
+                    <a href="/application/create" class="nav-link text-dark">İş Başvurusu</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/profile/@User.Identity.Name" class="nav-link text-dark"><i class="bi bi-person-fill"></i> @User.Identity.Name</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/user/logout" class="nav-link text-danger"><i class="bi bi-box-arrow-in-right"></i> Logout</a>
+                </li>
+            }
+            else
+            {
+                <li class="nav-item">
+                    <a href="/user/register" class="nav-link text-info"><i class="bi bi-person-add"></i> Register</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/user/login" class="nav-link text-success"><i class="bi bi-box-arrow-in-left"></i> Login</a>
+                </li>
+            }
+        </ul>
+    </div>
+</nav>
+

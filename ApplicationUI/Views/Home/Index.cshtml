@@ -1,0 +1,31 @@
+﻿@model List<JobDTO>
+
+<header class="hero bg-dark bg-gradient text-light text-center py-5 rounded shadow">
+        <div class="container">
+            <h1 class="display-4">Hoşgeldiniz!</h1>
+            <p class="lead">Şirketimizin İlanlarını Dilediğiniz Gibi İnceleyebilir ve Başvurabilirsiniz</p>
+        </div>
+    </header>
+
+    <section class="py-5 ">
+        <div class="container">
+            <div class="row">
+                @foreach(var job in Model)
+                {
+                    <div class="col-lg-4 col-md-6 mb-4 " >
+                        <div class="card shadow">
+                            <img src="~/img/@job.Image" class="img-fluid rounded" alt="" style="max-height: 270px;">
+                            <div class="card-body text-center">
+                                <h5><a asp-controller="Jobs" asp-action="Details" asp-route-id="@job.Url" class="btn-link fw-bold text-decoration-none text-dark">@job.Title</a></h5>
+                                <p class="card-text">@job.Description</p>
+                                <div class="text-center">
+                                    <a href="/application/create" class="btn btn-dark bg-gradient">Başvur</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }  
+            </div>
+        </div>
+    </section>
+

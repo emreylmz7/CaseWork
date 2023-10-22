@@ -1,0 +1,55 @@
+@using ApplicationUI.Models.Entities;
+
+@model List<JobApplication>
+
+<div class="row">
+    <div class="col-12">
+        @if(User.FindFirstValue(ClaimTypes.Role) == "admin")
+        {
+            <h2 class="mb-4">Alınan Başvurular</h2>
+        }
+        else
+        {
+            <h2 class="mb-4">Başvurularım</h2>
+        }
+        
+        <table class="table table-bordered shadow">
+            <thead class="thead-dark">
+                <tr>
+                    <th style="width: 200px;"></th>
+                    <th>İş İlanı</th>
+                    @if(User.FindFirstValue(ClaimTypes.Role) == "admin")
+                    {
+                        <th>Başvuru Sahibi</th>
+                    }
+                    <th>Başvuru Durumu</th>
+                    <th>Başvuru Tarihi</th>
+                    <th style="width: 125px;"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var item in Model)
+                {
+                    <tr>
+                        <td><img src="/img/@item.JobPosition.Image" class="img-fluid" alt=""></td>
+                        <td>@item.JobPosition.Title</td>
+                        @if(User.FindFirstValue(ClaimTypes.Role) == "admin")
+                        {
+                            <td>@item.FirstName  @item.LastName</td>
+                        }
+                        <td>@item.Status</td>
+                        <td>@item.ApplicationDate.ToString("d")</td>
+                        <td>
+                            <a href="/application/update/@item.JobApplicationId" class="btn btn-sm btn-primary">Edit</a>
+                            <a href="/application/delete/@item.JobApplicationId" class="btn btn-sm btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="text-center mb-4">
+    <a href="/application/create" class="btn btn-success">Başvuru Yap</a>
+</div>

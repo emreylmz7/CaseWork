@@ -1,0 +1,17 @@
+@model List<JobDTO>
+
+<div class="card mb-3 shadow">
+    <div class="card-header bg-dark bg-gradient text-white">
+        <h6 class="card-title mb-0">Son İlanlar</h6>
+    </div>
+    <div class="card-body">
+        @foreach(var job in Model)
+        {
+            <div class="mb-3">
+                <a href="/jobs/details/@job.Url">
+                    <h6 class="mb-0 text-dark">@job.Title</h6>
+                </a>
+            </div>
+        }
+    </div>
+</div>

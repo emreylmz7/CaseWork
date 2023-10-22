@@ -1,0 +1,56 @@
+@model ApplicationDTO
+
+<div class="row justify-content-center ">
+    <div class="col-md-9 col-sm-12 ">
+        <div class="bg-white p-4 rounded shadow-sm ">
+            <h1 class="text-center mb-4">Başvuru Düzenle</h1>
+
+            <form action="Update" method="post">
+
+                <input type="hidden" asp-for="JobApplicationId">
+
+                <div class="mb-3 px-5">
+                    <label asp-for="FirstName" class="form-label">Adı</label>
+                    <input asp-for="FirstName" class="form-control pl-3 pr-3" placeholder="FirstName">
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3 px-5">
+                    <label asp-for="LastName" class="form-label">Soyadı</label>
+                    <input asp-for="LastName" class="form-control pl-3 pr-3" placeholder="LastName">
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3 px-5">
+                    <label asp-for="Email" class="form-label">Email</label>
+                    <input asp-for="Email" class="form-control pl-3 pr-3" placeholder="Email">
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3 px-5">
+                    <label asp-for="PhoneNumber" class="form-label">Telefon</label>
+                    <input asp-for="PhoneNumber" class="form-control pl-3 pr-3" placeholder="PhoneNumber">
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3 px-5">
+                    <label asp-for="Resume" class="form-label">Özgeçmiş</label>
+                    <textarea asp-for="Resume" class="form-control pl-3 pr-3" placeholder="Resume"></textarea>
+                    <span asp-validation-for="Resume" class="text-danger"></span>
+                </div>
+                
+                @* <div class="mb-3 px-5">
+                    <label asp-for="JobPositionId" class="form-label">İş İlanı</label>
+                    <select asp-for="JobPositionId" asp-items="ViewBag.v" class="form-control">
+                        <option value="">Choose</option>
+                    </select>
+                </div> *@
+
+                <div class="text-center py-3 mb-3">
+                    <button type="submit" class="btn btn-primary btn-block">Kaydet</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
