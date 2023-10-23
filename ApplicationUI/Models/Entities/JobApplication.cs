@@ -23,8 +23,8 @@ namespace ApplicationUI.Models.Entities
 
     public enum ApplicationStatus
     {
-        InReview,
-        Approved,
-        Rejected
+        Değerlendiriliyor,
+        Onaylandı,
+        Reddedildi
     }
 }

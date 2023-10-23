@@ -2,6 +2,7 @@
 using ApplicationAPI.Data.Abstract;
 using ApplicationAPI.DTO;
 using ApplicationAPI.Entity;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace ApplicationAPI.Data.Concrete.EfCore
 {
@@ -49,8 +50,8 @@ namespace ApplicationAPI.Data.Concrete.EfCore
 
         public JobApplication GetJobApplicationById(int id)
         {
-            return _context.JobApplications.FirstOrDefault(j => j.JobApplicationId == id);
+            var application = _context.JobApplications.FirstOrDefault(j => j.JobApplicationId == id);
+            return application ?? throw new Exception("Belirtilen kimlikle iş başvurusu bulunamadı.");
         }
-
     }
 }

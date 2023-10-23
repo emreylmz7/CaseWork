@@ -8,6 +8,7 @@
             <form action="Update" method="post">
 
                 <input type="hidden" asp-for="JobApplicationId">
+                <input type="hidden" asp-for="UserId">
 
                 <div class="mb-3 px-5">
                     <label asp-for="FirstName" class="form-label">Adı</label>
@@ -38,13 +39,6 @@
                     <textarea asp-for="Resume" class="form-control pl-3 pr-3" placeholder="Resume"></textarea>
                     <span asp-validation-for="Resume" class="text-danger"></span>
                 </div>
-                
-                @* <div class="mb-3 px-5">
-                    <label asp-for="JobPositionId" class="form-label">İş İlanı</label>
-                    <select asp-for="JobPositionId" asp-items="ViewBag.v" class="form-control">
-                        <option value="">Choose</option>
-                    </select>
-                </div> *@
 
                 <div class="text-center py-3 mb-3">
                     <button type="submit" class="btn btn-primary btn-block">Kaydet</button>
@@ -54,3 +48,17 @@
         </div>
     </div>
 </div>
+
+
+@section Scripts {
+    <script     
+        src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.7.0/tinymce.min.js" 
+        integrity="sha512-kGk8SWqEKL++Kd6+uNcBT7B8Lne94LjGEMqPS6rpDpeglJf3xpczBSSCmhSEmXfHTnQ7inRXXxKob4ZuJy3WSQ==" 
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+    </script>
+    <script>
+        tinymce.init({
+            selector: "#Resume"
+        });
+    </script>
+}

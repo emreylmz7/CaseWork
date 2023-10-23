@@ -16,6 +16,8 @@ namespace ApplicationUI.Controllers
         {
             _httpClientFactory = httpClientFactory;
         }
+
+        
         
         [Authorize]
         public async Task<IActionResult> Create()
@@ -91,10 +93,10 @@ namespace ApplicationUI.Controllers
         }
         
         [HttpGet]
-        public async Task<IActionResult> Update(int id)
+        public async Task<IActionResult> Edit(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync($"http://localhost:5189/api/Application/GetApplication/{id}");
+            var responseMessage = await client.GetAsync($"http://localhost:5189/api/Job/GetApplication/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -105,28 +107,18 @@ namespace ApplicationUI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Update(ApplicationDTO model)
+        public async Task<IActionResult> Edit(ApplicationDTO model)
         {
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(model);
             StringContent stringContent = new StringContent(jsonData,Encoding.UTF8,"application/json");
-            var responseMessage = await client.PutAsync("http://localhost:5189/api/Application/Update",stringContent);
+            var responseMessage = await client.PutAsync("http://localhost:5189/api/Job/Edit",stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("List");
             }  
             return View();
         }
-
-
-
-            
-
-
-
-
-
-
 
 
         private static ApplicationDTO ApplicationToDTO(ApplicationCreateDTO application)
@@ -143,7 +135,7 @@ namespace ApplicationUI.Controllers
                 JobPositionId = application.JobPositionId,
                 UserId = 1,
                 ApplicationDate = DateTime.Now,
-                Status = Models.ApplicationStatus.InReview
+                Status = Models.ApplicationStatus.Değerlendiriliyor
             };
         }
     }

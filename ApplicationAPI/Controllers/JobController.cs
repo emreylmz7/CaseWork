@@ -27,28 +27,7 @@ namespace ApplicationAPI.Controllers
         };
         }
 
-        // [HttpPost]
-        // public async Task<IActionResult> Create(ApplicationDTO model)
-        // {
-        //     var jobApplication = await _jobApplicationRepository.JobApplications.FirstOrDefaultAsync(x => x.UserId == model.UserId || x.JobPositionId == model.JobPositionId );
-            
-        //     if (jobApplication == null)
-        //     {
-        //         _jobApplicationRepository.CreateJobApplication( new JobApplication{
-        //             FirstName = model.FirstName,
-        //             LastName = model.LastName,
-        //             Email = model.Email,
-        //             PhoneNumber = model.PhoneNumber,
-        //             Resume = model.Resume,
-        //             JobPositionId = model.JobPositionId,
-        //             UserId = model.UserId,
-        //             ApplicationDate = model.ApplicationDate,
-        //             Status = model.Status
-        //         }); 
-        //         return Ok("Kayıt Başarılı");
-        //     }
-        //     return BadRequest(model);
-        // }
+        
 
         [HttpPost]
         public async Task<IActionResult> Create(ApplicationDTO model)
@@ -56,11 +35,11 @@ namespace ApplicationAPI.Controllers
             try
             {
                 var mevcutBasvuru = await _jobApplicationRepository.JobApplications
-                    .FirstOrDefaultAsync(x => x.UserId == model.UserId || x.JobPositionId == model.JobPositionId);
+                    .FirstOrDefaultAsync(x => x.UserId == model.UserId && x.JobPositionId == model.JobPositionId);
 
                 if (mevcutBasvuru != null)
                 {
-                    return BadRequest("Aynı Kullanıcı Kimliği veya İş Pozisyonu Kimliği ile bir iş başvurusu zaten mevcut.");
+                    return BadRequest("Aynı Kullanıcı Kimliği ve İş Pozisyonu Kimliği ile bir iş başvurusu zaten mevcut.");
                 }
 
                 var yeniIsBasvurusu = new JobApplication
@@ -77,23 +56,14 @@ namespace ApplicationAPI.Controllers
                 };
 
                 _jobApplicationRepository.CreateJobApplication(yeniIsBasvurusu);
-                // Yeni kaynağın URL'si ile 201 Created yanıtını dönmek için CreatedAtAction'ı kullanabilirsiniz.
-                // Örnek: return CreatedAtAction("GetApplication", new { id = yeniIsBasvurusu.JobApplicationId }, yeniIsBasvurusu);
 
-                return Ok(yeniIsBasvurusu); // Oluşturulan kaynağı döndürün.
+                return Ok(yeniIsBasvurusu);
             }
             catch (Exception ex)
             {
                 return StatusCode(500, $"İç Sunucu Hatası: {ex.Message}");
             }
         }
-
-
-
-
-
-
-
 
         [HttpGet]
         public async Task<IActionResult> List()
@@ -120,17 +90,22 @@ namespace ApplicationAPI.Controllers
             {
                 return BadRequest();
             }
-            
-            return Ok(ApplicationToDTO(application));
+
+            ApplicationToDTO(application);
+            return Ok(application);
         }
 
         [HttpPut]
-        public IActionResult Update(ApplicationDTO applicationDTO)
+        public IActionResult Edit(ApplicationDTO applicationDTO)
         {
+            var application = _jobApplicationRepository.JobApplications.FirstOrDefault(a => a.JobApplicationId == applicationDTO.JobApplicationId);
+            if (application == null)
+            {
+                return BadRequest("Başvuru Bulunamadı");
+            }
             _jobApplicationRepository.EditJobApplication(applicationDTO);
             return Ok();
         }
-
 
 
 
@@ -152,3 +127,30 @@ namespace ApplicationAPI.Controllers
         }
     }
 }
+
+
+
+
+
+// [HttpPost]
+        // public async Task<IActionResult> Create(ApplicationDTO model)
+        // {
+        //     var jobApplication = await _jobApplicationRepository.JobApplications.FirstOrDefaultAsync(x => x.UserId == model.UserId || x.JobPositionId == model.JobPositionId );
+            
+        //     if (jobApplication == null)
+        //     {
+        //         _jobApplicationRepository.CreateJobApplication( new JobApplication{
+        //             FirstName = model.FirstName,
+        //             LastName = model.LastName,
+        //             Email = model.Email,
+        //             PhoneNumber = model.PhoneNumber,
+        //             Resume = model.Resume,
+        //             JobPositionId = model.JobPositionId,
+        //             UserId = model.UserId,
+        //             ApplicationDate = model.ApplicationDate,
+        //             Status = model.Status
+        //         }); 
+        //         return Ok("Kayıt Başarılı");
+        //     }
+        //     return BadRequest(model);
+        // }

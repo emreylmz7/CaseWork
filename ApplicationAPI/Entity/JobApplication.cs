@@ -20,8 +20,8 @@ namespace ApplicationAPI.Entity
 
     public enum ApplicationStatus
     {
-        InReview,
-        Approved,
-        Rejected
+        Değerlendiriliyor,
+        Onaylandı,
+        Reddedildi
     }
 }

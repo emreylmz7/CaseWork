@@ -36,6 +36,12 @@ app.MapControllerRoute(
 );
 
 app.MapControllerRoute(
+    name: "application_edit",
+    pattern: "jobs/details/{url}",
+    defaults: new {controller = "Jobs",action = "Details"}
+);
+
+app.MapControllerRoute(
     name: "user_profile",
     pattern: "profile/{username}",
     defaults: new {controller = "Users",action = "Profile"}

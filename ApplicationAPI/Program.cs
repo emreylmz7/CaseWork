@@ -5,10 +5,16 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// builder.Services.AddDbContext<ApplicationContext>(options => {
+//     var config = builder.Configuration;
+//     var connectionString = config.GetConnectionString("sql_connection"); 
+//     options.UseSqlite(connectionString);
+// });
+
 builder.Services.AddDbContext<ApplicationContext>(options => {
     var config = builder.Configuration;
-    var connectionString = config.GetConnectionString("sql_connection"); 
-    options.UseSqlite(connectionString);
+    var connectionString = config.GetConnectionString("mssql_connection"); 
+    options.UseSqlServer(connectionString);
 });
 
 builder.Services.AddScoped<IJobPositionRepository,EfJobPositionRepository>();
