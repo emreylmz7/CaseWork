@@ -44,7 +44,7 @@ namespace ApplicationAPI.Data.Concrete.EfCore
                             Url = "angular-dev-hiring",
                             IsActive = true,
                             PostedDate = DateTime.Now.AddDays(-15),
-                            Image = "2.jpg",
+                            Image = "2.png",
                         },
                         new JobPosition {
                             Title = "React Developer Hiring",
@@ -53,7 +53,7 @@ namespace ApplicationAPI.Data.Concrete.EfCore
                             Url = "react-dev-hiring",
                             IsActive = true,
                             PostedDate = DateTime.Now.AddDays(-20),
-                            Image = "3.jpg",
+                            Image = "4.png",
                         }
                     );
                     context.SaveChanges();

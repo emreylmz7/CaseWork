@@ -40,6 +40,21 @@ namespace ApplicationUI.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(ApplicationCreateDTO model)
         {
+            if (!ModelState.IsValid)
+            {
+                var clientt = _httpClientFactory.CreateClient();
+                var responseMessagee = await clientt.GetAsync("http://localhost:5189/api/Application/GetActiveJobs");
+
+                var jsonDataa = await responseMessagee.Content.ReadAsStringAsync();
+                var values = JsonConvert.DeserializeObject<List<JobDTO>>(jsonDataa);
+                List<SelectListItem>  jobvalues = (from x in values!.ToList()select new SelectListItem{
+                    Text = x.Title,
+                    Value = x.JobPositionId.ToString()
+                }).ToList();
+
+                ViewBag.v = jobvalues;
+                return View(model);
+            }
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var application = ApplicationToDTO(model);
             application.UserId = int.Parse(userId ?? "");
@@ -55,6 +70,17 @@ namespace ApplicationUI.Controllers
             }
             else
             {
+                var clientt = _httpClientFactory.CreateClient();
+                var responseMessagee = await clientt.GetAsync("http://localhost:5189/api/Application/GetActiveJobs");
+
+                var jsonDataa = await responseMessagee.Content.ReadAsStringAsync();
+                var values = JsonConvert.DeserializeObject<List<JobDTO>>(jsonDataa);
+                List<SelectListItem>  jobvalues = (from x in values!.ToList()select new SelectListItem{
+                    Text = x.Title,
+                    Value = x.JobPositionId.ToString()
+                }).ToList();
+
+                ViewBag.v = jobvalues;
                 return View(model);
             }
         }
@@ -92,6 +118,7 @@ namespace ApplicationUI.Controllers
             return View();
         }
         
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
@@ -106,9 +133,14 @@ namespace ApplicationUI.Controllers
             return View();
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Edit(ApplicationDTO model)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(model);
             StringContent stringContent = new StringContent(jsonData,Encoding.UTF8,"application/json");
@@ -119,6 +151,7 @@ namespace ApplicationUI.Controllers
             }  
             return View();
         }
+
 
 
         private static ApplicationDTO ApplicationToDTO(ApplicationCreateDTO application)
