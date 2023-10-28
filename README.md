@@ -1,49 +1,51 @@
-# Kurumsal İş Başvuru Platformu
+# Corporate Job Application Platform
 
-Bu proje, kurumsal bir firmanın iş başvurularını online olarak almak için geliştirilmiş bir platformu içermektedir.
+This project aims to develop an online job application platform for a corporate company.
 
-## Özellikler
+## Features
 
 ### Backend (C# .NET 7.0, Web API, Entity Framework, MSSQL, Swagger):
 
-- **Veritabanı Modeli:** İş başvurusu modeli (Başvuru sahibinin adı, soyadı, iletişim bilgileri, özgeçmişi, pozisyon tercihi, vb. bilgiler içerir). MSSQL veritabanı kullanılarak başvurular saklanır.
+- **Database Model:** The job application model includes the applicant's name, last name, contact information, resume, position preference, and more. Applications are stored using an MSSQL database.
 
-- **Web API:** İş başvurularını almak, kaydetmek, güncellemek ve silmek için API endpoint'leri sunar. Başvuru verilerini doğrulama ve işleme için gerekli validasyonları içerir.
+- **Web API:** It provides API endpoints for receiving, saving, updating, and deleting job applications. It includes necessary validation for processing and verifying application data.
 
-- **Swagger Dökümantasyonu:** API dökümantasyonunu oluşturmak için Swagger kullanılır. Kullanıcıların API'yi daha iyi anlamalarını sağlar.
+- **Swagger Documentation:** Swagger is used to create API documentation, helping users better understand the API.
 
 ### Frontend (MVC):
 
-- **Kullanıcı Arayüzü:** İş başvuru formu, başvurucunun kişisel bilgilerini ve özgeçmişini içerir. Kullanıcılar pozisyon tercihini seçebilir.
+- **User Interface:** The job application form includes personal information and a resume for the applicant. Users can select their position preference.
 
-- **Başvuru Listesi:** Kullanıcıların yaptığı başvuruları listeleyen bir sayfa. Her başvuruya tarih bilgisi eklenir.
+- **Application List:** A page that lists the job applications made by users, including a date for each application.
 
-- **İş Başvurusu Gönderme:** Kullanıcıların başvurularını göndermesine olanak tanır.
+- **Job Application Submission:** Enables users to submit their job applications.
 
-- **Ekstralar:** Kullanıcıların başvurularını düzenlemesine veya silmesine izin verir. İş başvurularının durumunu takip etmek için bir sistem içerir (bekleme, inceleme, kabul, reddedildi, vb.).
+- **Extras:** Allows users to edit or delete their applications. It includes a system to track the status of job applications (pending, under review, accepted, rejected, etc.).
 
-## Başlarken
+## Getting Started
 
-Projenin yerel olarak çalıştırılması veya geliştirilmesi için aşağıdaki adımları izleyebilirsiniz:
+To run the project locally or for development purposes, you can follow these steps:
 
-1. Proje deposunu bilgisayarınıza klonlayın.
+1. Clone the project repository to your computer.
 
-2. `Backend` klasöründe, gerekli bağımlılıkları yüklemek için `dotnet restore` komutunu çalıştırın.
+2. In the `Backend` folder, run `dotnet restore` to install the required dependencies.
 
-3. `Backend` klasöründe `appsettings.json` dosyasını düzenleyerek MSSQL veritabanı bağlantı ayarlarını yapın.
+3. Edit the `appsettings.json` file in the `Backend` folder to configure the MSSQL database connection settings.
 
-4. Veritabanını oluşturmak ve veritabanı tablolarını oluşturmak için Entity Framework Migration kullanın (`dotnet ef migrations add InitialCreate` ve `dotnet ef database update`).
+4. Use Entity Framework Migration to create the database and tables (`dotnet ef migrations add InitialCreate` and `dotnet ef database update`).
 
-5. Web API'yi başlatmak için `dotnet run` komutunu çalıştırın.
+5. Start the Web API using the `dotnet run` command.
 
-6. `Frontend` klasöründe, gerekli bağımlılıkları yüklemek için `npm install` veya `yarn install` komutunu çalıştırın.
+6. In the `Frontend` folder, install the necessary dependencies using `npm install` or `yarn install`.
 
-7. Kullanıcı arayüzünü başlatmak için `npm start` veya `yarn start` komutunu çalıştırın.
+7. Start the user interface using `npm start` or `yarn start`.
 
-8. Tarayıcınızda projenin çalıştığını görmek için `http://localhost:3000` adresini ziyaret edin.
+8. Visit `http://localhost:3000` in your browser to see the project in action.
 
-## Katkıda Bulunma
+## Contributing
 
-Projeyle ilgili katkılarda bulunmak isterseniz, lütfen bir çekme isteği (pull request) gönderin. Katkılarınızı memnuniyetle karşılarız.
+If you'd like to contribute to the project, please submit a pull request. We welcome your contributions.
 
+## License
 
+This project is licensed under the MIT License. For more information, refer to the [LICENSE](LICENSE) file.
