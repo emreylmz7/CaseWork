@@ -1,51 +1,43 @@
-# Corporate Job Application Platform
+# KariyerPlus - Job Application App
 
-This project aims to develop an online job application platform for a corporate company.
+**KariyerPlus Job Application App** is a robust web application developed with .NET Core API and .NET MVC, designed to facilitate job application processes. The application provides a seamless experience for job seekers to explore job listings, apply for positions, and track their applications. Employers can easily post job vacancies and manage incoming applications. The backend leverages the power of .NET Core API, with Entity Framework Core managing database interactions.
 
 ## Features
 
-### Backend (C# .NET 7.0, Web API, Entity Framework, MSSQL, Swagger):
+- **User Interface**: The job application form is designed to be user-friendly, allowing applicants to fill out personal information and upload their resume. Users can also specify their position preferences directly within the form.
 
-- **Database Model:** The job application model includes the applicant's name, last name, contact information, resume, position preference, and more. Applications are stored using an MSSQL database.
+- **Application List**: Provides a dedicated page where users can view a list of all their job applications, complete with submission dates, allowing for easy tracking and review of their application history.
 
-- **Web API:** It provides API endpoints for receiving, saving, updating, and deleting job applications. It includes necessary validation for processing and verifying application data.
+- **Job Application Submission**: Empowers users to submit their job applications seamlessly. The form is simple, intuitive, and ensures all necessary information is captured effectively.
 
-- **Swagger Documentation:** Swagger is used to create API documentation, helping users better understand the API.
+- **Extras**: 
+  - **Edit or Delete Applications**: Users have the flexibility to edit or delete their submitted applications, offering greater control over their job application process.
+  - **Application Status Tracking**: Includes a robust system for tracking the status of job applications, with real-time updates on each application's status, such as pending, under review, accepted, or rejected.
 
-### Frontend (MVC):
+- **RESTful API Integration**: Built using a .NET Core API backend that provides RESTful endpoints, ensuring efficient communication between the client and server.
+- **Entity Framework Core**: Utilizes Entity Framework Core for ORM capabilities, allowing seamless database management with support for migrations, querying, and data manipulation.
 
-- **User Interface:** The job application form includes personal information and a resume for the applicant. Users can select their position preference.
+## Technology Stack
 
-- **Application List:** A page that lists the job applications made by users, including a date for each application.
+- **Frontend**: .NET MVC
+- **Backend**: .NET Core API
+- **Database**: SQL Server
+- **ORM**: Entity Framework Core
+- **Architecture**: Model-View-Controller (MVC) Pattern
 
-- **Job Application Submission:** Enables users to submit their job applications.
+### Prerequisites
 
-- **Extras:** Allows users to edit or delete their applications. It includes a system to track the status of job applications (pending, under review, accepted, rejected, etc.).
+- **.NET Core SDK**: Version 7.0
+- **SQL Server**: For database operations; SQL Server Express is suitable for local development.
 
-## Getting Started
 
-To run the project locally or for development purposes, you can follow these steps:
+## Screenshots
 
-1. Clone the project repository to your computer.
+![job1](https://github.com/user-attachments/assets/e3837b91-381b-47da-b27b-0060d1b0b68d)
+![job2](https://github.com/user-attachments/assets/06022c00-65c2-4ee2-8195-97dac240bed2)
+![job3](https://github.com/user-attachments/assets/ec4f95fa-3fe7-4103-a1e8-218c4f91bb6b)
+![job4](https://github.com/user-attachments/assets/8ed5feac-b6ad-4686-8d53-af3f13f81be2)
+![job5](https://github.com/user-attachments/assets/f0d3db82-7e5f-4799-bf31-a91334bd7515)
+![job6](https://github.com/user-attachments/assets/a3d3314f-54bb-485e-87b8-35f4338b2b5a)
 
-2. In the `Backend` folder, run `dotnet restore` to install the required dependencies.
-
-3. Edit the `appsettings.json` file in the `Backend` folder to configure the MSSQL database connection settings.
-
-4. Use Entity Framework Migration to create the database and tables (`dotnet ef migrations add InitialCreate` and `dotnet ef database update`).
-
-5. Start the Web API using the `dotnet run` command.
-
-6. In the `Frontend` folder, install the necessary dependencies using `npm install` or `yarn install`.
-
-7. Start the user interface using `npm start` or `yarn start`.
-
-8. Visit `http://localhost:3000` in your browser to see the project in action.
-
-## Contributing
-
-If you'd like to contribute to the project, please submit a pull request. We welcome your contributions.
-
-## License
-
-This project is licensed under the MIT License. For more information, refer to the [LICENSE](LICENSE) file.
+  
